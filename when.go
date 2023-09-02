@@ -21,6 +21,6 @@ func When(input string) (string, error) {
     }
 
     // If parsing using all parsers fails, return an error
-    return "", fmt.Errorf("unable to parse the timestamp")
+    return "", fmt.Errorf("unable to parse timestamp")
 }
 
