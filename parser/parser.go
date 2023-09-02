@@ -5,15 +5,14 @@ import (
 	"time"
 )
 
-type TimeParserFunc func(string) (time.Time, error)
+type ParseTimeFunc func(string) (time.Time, error)
 
 func Parse(input string) (time.Time, error) {
-
-	timeParserFuncs := []TimeParserFunc{
-		parseRFC3339, parseUnixTime,
+	parseTimeFunc := []ParseTimeFunc{
+		parseRFC, parseUnixTime,
 	}
 
-	for _, timeParserFunc := range timeParserFuncs {
+	for _, timeParserFunc := range parseTimeFunc {
 		t, err := timeParserFunc(input)
 		if err == nil {
 			return t, nil
