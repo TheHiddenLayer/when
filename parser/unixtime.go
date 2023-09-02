@@ -10,6 +10,6 @@ func parseUnixTime(input string) (time.Time, error) {
 	if err != nil {
 		return time.Time{}, err
 	}
-	t := time.Unix(unixTime, 0)
-	return t, nil
+	parsedTime := time.Unix(unixTime, 0)
+	return parsedTime, nil
 }

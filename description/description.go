@@ -6,15 +6,15 @@ import (
 	"time"
 )
 
-func Describe(t time.Time) string {
+func Describe(t time.Time, verbose bool) string {
 	currentTime := time.Now()
 	duration := currentTime.Sub(t)
 	absoluteDuration := time.Duration(int(math.Abs(float64(duration.Seconds()))))
 
 	description := absoluteTimeDifference(absoluteDuration)
 
-	futureTime := duration.Seconds() < 0
-	if futureTime {
+	isFutureTime := duration.Seconds() < 0
+	if isFutureTime {
 		description += " from now"
 	} else {
 		description += " ago"

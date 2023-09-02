@@ -10,6 +10,11 @@ import (
 
 func main() {
 	flag.Usage = usage
+	verbose := flag.Bool("verbose", false, "Enable verbose output")
+	if *verbose {
+		fmt.Println("SELECTING VERBOSE")
+	}
+
 	flag.Parse()
 	input := flag.Arg(0)
 
@@ -23,7 +28,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	readableTime, err := when.When(input)
+	readableTime, err := when.When(input, *verbose)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

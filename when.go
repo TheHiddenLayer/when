@@ -6,9 +6,9 @@ import (
 )
 
 func When(time string) (string, error) {
-	t, err := parser.Parse(time)
+	parsedTime, err := parser.Parse(time)
 	if err != nil {
 		return "", err
 	}
-	return description.Describe(t), nil
+	return description.Describe(parsedTime), nil
 }

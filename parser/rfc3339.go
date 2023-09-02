@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func parseRFC(input string) (time.Time, error) {
+func parseRFCTime(input string) (time.Time, error) {
 	layouts := []string{
 		time.RFC3339,
 		time.RFC3339Nano,
@@ -17,9 +17,9 @@ func parseRFC(input string) (time.Time, error) {
 	}
 
 	for _, layout := range layouts {
-		t, err := time.Parse(layout, input)
+		parsedTime, err := time.Parse(layout, input)
 		if err == nil {
-			return t, nil
+			return parsedTime, nil
 		}
 	}
 
