@@ -23,11 +23,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(when.When(input))
+	readableTime, err := when.When(input)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Println(readableTime)
 }
 
 func usage() {
-    const userGuide = `
+	const userGuide = `
 
 Usage: when <TIME>
 
@@ -42,5 +47,5 @@ Usage: when <TIME>
         $ when 1660460492
 
 `
-    fmt.Print(userGuide)
+	fmt.Print(userGuide)
 }
