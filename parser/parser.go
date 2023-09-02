@@ -10,7 +10,7 @@ type TimeParserFunc func(string) (time.Time, error)
 func Parse(input string) (time.Time, error) {
 
 	timeParserFuncs := []TimeParserFunc{
-		ParseRFC3339, ParseUnixTime,
+		parseRFC3339, parseUnixTime,
 	}
 
 	for _, timeParserFunc := range timeParserFuncs {
