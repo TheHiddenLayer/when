@@ -11,53 +11,49 @@ func Describe(t time.Time) string {
 	duration := currentTime.Sub(t)
 	absoluteDuration := time.Duration(int(math.Abs(float64(duration.Seconds()))))
 
-	var description string
+	description := absoluteTimeDifference(absoluteDuration)
 
-	if duration.Seconds() < 0 {
-		// In the future
-		if absoluteDuration < 60 {
-			description = "less than a minute from now"
-		} else if absoluteDuration < 3600 {
-			description = fmt.Sprintf("%d minutes from now", absoluteDuration/60)
-		} else if absoluteDuration < 86400 {
-			description = fmt.Sprintf("%d hours from now", absoluteDuration/3600)
-		} else if absoluteDuration < 604800 {
-			description = fmt.Sprintf("%d days from now", absoluteDuration/86400)
-		} else if absoluteDuration < 2419200 {
-			description = fmt.Sprintf("almost %d weeks from now", absoluteDuration/604800)
-		} else if absoluteDuration < 29030400 {
-			description = fmt.Sprintf("around %d months from now", absoluteDuration/2419200)
-		} else {
-			years := absoluteDuration / 29030400
-			if years > 1 {
-				description = fmt.Sprintf("over %d years from now", years)
-			} else {
-				description = "almost a year from now"
-			}
-		}
+	futureTime := duration.Seconds() < 0
+	if futureTime {
+		description += " from now"
 	} else {
-		// In the past
-		if absoluteDuration < 10 {
-			description = "just now"
-		} else if absoluteDuration < 60 {
-			description = "less than a minute ago"
-		} else if absoluteDuration < 3600 {
-			description = fmt.Sprintf("%d minutes ago", absoluteDuration/60)
-		} else if absoluteDuration < 86400 {
-			description = fmt.Sprintf("%d hours ago", absoluteDuration/3600)
-		} else if absoluteDuration < 604800 {
-			description = fmt.Sprintf("%d days ago", absoluteDuration/86400)
-		} else if absoluteDuration < 29030400 {
-			description = fmt.Sprintf("around %d months ago", absoluteDuration/2419200)
-		} else {
-			years := absoluteDuration / 29030400
-			if years > 1 {
-				description = fmt.Sprintf("over %d years ago", years)
-			} else {
-				description = "almost a year ago"
-			}
-		}
+		description += " ago"
 	}
 
+	return description
+}
+
+// TODO: correct plurals
+func absoluteTimeDifference(absoluteDuration time.Duration) string {
+	var description string
+	if absoluteDuration < minute {
+		description = "less than a minute"
+	} else if absoluteDuration < hour {
+		description = fmt.Sprintf("%d minutes", absoluteDuration/minute)
+	} else if absoluteDuration < day {
+		description = fmt.Sprintf("%d hours", absoluteDuration/hour)
+	} else if absoluteDuration < week {
+		description = fmt.Sprintf("%d days", absoluteDuration/day)
+	} else if absoluteDuration < month {
+		description = fmt.Sprintf("almost %d weeks", absoluteDuration/week)
+	} else if absoluteDuration < year {
+		months := absoluteDuration / month
+		if months < 1 {
+			description = "almost a month"
+		} else if month == 1 {
+			description = "around a month"
+		} else {
+			description = fmt.Sprintf("over %d months", months)
+		}
+	} else {
+		years := absoluteDuration / year
+		if years < 1 {
+			description = "almost a year"
+		} else if year == 1 {
+			description = "around a year"
+		} else {
+			description = fmt.Sprintf("over %d years", years)
+		}
+	}
 	return description
 }
