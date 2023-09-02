@@ -33,7 +33,6 @@ func main() {
 
 func usage() {
 	const userGuide = `
-
 Usage: when <TIME>
 
         <TIME> can be any standard computer time format.
