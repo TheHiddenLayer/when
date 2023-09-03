@@ -1,8 +1,8 @@
 package when
 
 import (
-	"github.com/ubhattac/when/description"
-	"github.com/ubhattac/when/parser"
+	"github.com/ubhattac/when/internal/description"
+	"github.com/ubhattac/when/internal/parser"
 )
 
 func When(time string) (string, error) {
