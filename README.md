@@ -2,7 +2,7 @@ The `when` utility takes input from any popular time format and generates a huma
 
 ### Usage
 
-```bash
+```
 $ when -v 1443018600
 over 7 years ago
 
