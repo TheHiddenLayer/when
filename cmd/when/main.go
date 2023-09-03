@@ -41,6 +41,7 @@ func main() {
 	fmt.Println(readableTime)
 }
 
+// TODO: adjust usage to indicate verbosity
 func usage() {
 	const userGuide = `
 Usage: when <TIME>
