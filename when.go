@@ -13,7 +13,7 @@ func When(time string) (string, error) {
 	return description.Describe(parsedTime), nil
 }
 
-func WhenVerbosely(time string) (string, error) {
+func WhenVerbose(time string) (string, error) {
 	parsedTime, err := parser.Parse(time)
 	if err != nil {
 		return "", err
