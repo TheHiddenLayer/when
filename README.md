@@ -1,7 +1,5 @@
-# `when` is/was it?
+## `when` ?
 The `when` utility takes input as any popular time format and generates a human-readable description of the provided time, indicating whether the time is in the past or future. It also provides a lightweight sense of approximation. This utility obviously enhances any application where timestamped data is frequently displayed to users.
-
----
 
 ## Installation
 
@@ -9,20 +7,18 @@ The `when` utility takes input as any popular time format and generates a human-
 go get github.com/ubhattac/when
 ```
 
----
-
-### Go Usage
+## Go Usage
 
 ```go
 import "github.com/ubhattac/when"
-
 readableTime, err := when.When(input)
-readableTime, err = when.WhenVerbose(input)
 ```
 
 Reference `cmd/when/main.go` for more usage in Go.
 
-### CLI Usage
+## CLI Usage
+
+Simply, `when [-v] <timestamp>`
 
 ```
 $ go install github.com/ubhattac/when/cmd/when@latest
