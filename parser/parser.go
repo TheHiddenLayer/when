@@ -10,8 +10,8 @@ type TimeParser func(string) (time.Time, error)
 func Parse(input string) (time.Time, error) {
 	timeParsers := []TimeParser{parseRFCTime, parseUnixTime}
 
-	for _, timeParser := range timeParsers {
-		parsedTime, err := timeParser(input)
+	for _, parseTime := range timeParsers {
+		parsedTime, err := parseTime(input)
 		if err == nil {
 			return parsedTime, nil
 		}
