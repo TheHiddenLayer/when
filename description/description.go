@@ -71,8 +71,7 @@ func describeAbsDiffVerbosely(secs int) string {
 	case secs < month:
 		return "around " + grammaticalNumber(secs/week, "week")
 	case secs < year:
-		description := "roughly " + grammaticalNumber(secs/month, "month")
-		return description
+		return "roughly " + grammaticalNumber(secs/month, "month")
 	default:
 		return "over " + grammaticalNumber(secs/year, "year")
 	}

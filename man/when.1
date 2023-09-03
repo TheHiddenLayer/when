@@ -1,0 +1,55 @@
+WHEN(1)                          User Commands                         WHEN(1)
+
+NAME
+       when - A utility that translates timestamps into something friendly and human-readable
+
+SYNOPSIS
+       when [-v] <timestamp>
+
+DESCRIPTION
+       The when utility parses and describes timestamps from various
+       formats, such as the RFC and Unix timestamps. It then generates a
+       human-readable description of the provided timestamp, indicating
+       whether the timestamp in the past or future and providing a sense
+       of approximation. This utility obviously enhances any application
+       where timestamped data is frequently displayed to users.
+
+OPTIONS
+       -v, --verbose
+              Enable verbose mode to display additional information.
+
+EXAMPLES
+       To parse and describe a timestamp:
+
+           when 2023-09-01T14:30:00Z
+           when 1630493400
+
+       To parse and verbosely describe a timestamp:
+
+           when -v 2023-09-01T14:30:00Z
+           when -v 1630493400
+
+AUTHOR
+       This manual page was written by ubhattac.
+
+REPORTING BUGS
+       Please report bugs to [Your Email].
+
+SEE ALSO
+       The `time` package documentation in Go:
+       https://pkg.go.dev/time
+
+       More information about timestamps:
+       https://en.wikipedia.org/wiki/Timestamp
+
+       The Go programming language:
+       https://golang.org/
+
+COPYRIGHT
+       This is free and unencumbered software released into the public domain.
+
+VERSION
+       1.0
+
+DATE
+       September 1, 2023

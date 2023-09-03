@@ -27,9 +27,8 @@ func main() {
 
 	var readableTime string
 	var err error
-
 	if *verbose {
-		readableTime, err = when.WhenVerbosely(input)
+		readableTime, err = when.WhenVerbose(input)
 	} else {
 		readableTime, err = when.When(input)
 	}
