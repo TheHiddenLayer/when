@@ -12,7 +12,14 @@ func Describe(t time.Time) string {
 
 	absDiffSeconds := int(math.Abs(duration.Seconds()))
 	if absDiffSeconds >= month {
-		return t.Format("01/02/2006")
+        var prefix string
+        if duration.Seconds() < 0 {
+            prefix = "on "
+        }
+        if absDiffSeconds <= 3 * month {
+            return prefix + t.Format("Jan 2")
+        }
+        return prefix + t.Format("01/02/2006")
 	}
 	description := describeAbsDiff(absDiffSeconds)
 
