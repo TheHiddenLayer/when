@@ -10,7 +10,9 @@ import (
 
 func main() {
 	flag.Usage = usage
+	verbose := flag.Bool("verbose", false, "Enable verbose descriptions of time")
 	flag.Parse()
+
 	input := flag.Arg(0)
 
 	if input == "help" {
@@ -23,7 +25,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	readableTime, err := when.When(input)
+	var readableTime string
+	var err error
+
+	if *verbose {
+		readableTime, err = when.WhenVerbosely(input)
+	} else {
+		readableTime, err = when.When(input)
+	}
+
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -31,6 +41,7 @@ func main() {
 	fmt.Println(readableTime)
 }
 
+// TODO: adjust usage to indicate verbosity
 func usage() {
 	const userGuide = `
 Usage: when <TIME>
