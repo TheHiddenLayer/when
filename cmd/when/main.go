@@ -10,7 +10,7 @@ import (
 
 func main() {
 	flag.Usage = usage
-	verbose := flag.Bool("verbose", false, "Enable verbose descriptions of time")
+	verbose := flag.Bool("v", false, "Enable verbose mode to display wordy time descriptions")
 	flag.Parse()
 
 	input := flag.Arg(0)
@@ -40,20 +40,19 @@ func main() {
 	fmt.Println(readableTime)
 }
 
-// TODO: adjust usage to indicate verbosity
 func usage() {
 	const userGuide = `
-Usage: when <TIME>
+Usage: when [-v] <timestamp>
 
-        <TIME> can be any standard computer time format.
+        <timestamp> can be any standard computer time format.
 
         Currently supported formats are:
-        * RFC3339
-        * Unix time
+        * RFC formats
+        * Unix timestamp
 
         [Examples]
-        $ when 2023-09-01T14:30:00Z
-        $ when 1660460492
+    		when 2023-09-01T14:30:00Z
+    		when -v 1660460492
 
 `
 	fmt.Print(userGuide)
