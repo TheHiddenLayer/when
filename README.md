@@ -1,13 +1,16 @@
 ## `when` is or was it?
 The `when` utility takes input as any popular time format and generates a human-readable description of the provided time, indicating whether the time is in the past or future. It also provides a lightweight sense of approximation. This utility obviously enhances any application where timestamped data is frequently displayed to users.
 
+Think of any microblogging platform:
+
+<img height="450" src="https://raw.githubusercontent.com/ubhattac/assets/master/img/F3441A73-8B02-4184-AD2A-8479FBD0C4DA_1_201_a.jpeg" />
+
 # Installation
 
 ```bash
 git clone https://github.com/ubhattac/when
 make install
 ```
-
 
 ## Go Usage
 
@@ -48,6 +51,6 @@ $ someDate = 1795130423
 $ when -v $someDate
 in over 3 years
 
-$ when $specificDate
+$ when $someDate
 on 11/19/2026
 ```
