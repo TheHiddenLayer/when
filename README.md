@@ -44,7 +44,7 @@ $ when 2023-09-23T14:30:00Z
 $ when -v 1722733189
 in roughly 11 months
 
-$ specificDate = 1795130423
+$ someDate = 1795130423
 $ when -v $someDate
 in over 3 years
 
