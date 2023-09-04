@@ -1,4 +1,4 @@
-## `when` ?
+## `when` is or was it?
 The `when` utility takes input as any popular time format and generates a human-readable description of the provided time, indicating whether the time is in the past or future. It also provides a lightweight sense of approximation. This utility obviously enhances any application where timestamped data is frequently displayed to users.
 
 # Installation
