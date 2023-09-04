@@ -1,24 +1,27 @@
 ## `when` ?
 The `when` utility takes input as any popular time format and generates a human-readable description of the provided time, indicating whether the time is in the past or future. It also provides a lightweight sense of approximation. This utility obviously enhances any application where timestamped data is frequently displayed to users.
 
-## Installation
+# Installation
 
+```bash
+git clone https://github.com/thehiddenlayer/when
+make install
 ```
-go get github.com/thehiddenlayer/when
-```
+
 
 ## Go Usage
 
+```bash
+go get github.com/thehiddenlayer/when
+```
+
 ```go
 import "github.com/thehiddenlayer/when"
-var (
-    readableTime string
-    err error
-)
-readableTime, err = when.When(input)
+readableTime, err := when.When(input)
 ```
 
 Reference `cmd/when/main.go` for more usage in Go.
+
 
 ## CLI Usage
 
