@@ -4,7 +4,7 @@ BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
 # Man page source and destination
-MAN_SOURCE = when.1
+MAN_SOURCE = man/when.1
 MAN_DEST = $(MANDIR)/when.1
 
 # Binary name
