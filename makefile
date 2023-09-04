@@ -1,16 +1,12 @@
-# Installation paths
 PREFIX = /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
-# Man page source and destination
 MAN_SOURCE = man/when.1
 MAN_DEST = $(MANDIR)/when.1
 
-# Binary name
 BINARY = when
 
-# Define variables
 GOCMD = go
 GOFLAGS = -v
 GOTEST = $(GOCMD) test
@@ -30,7 +26,6 @@ uninstall:
 build:
 	@$(GOCMD) build -o $(BINARY) ./cmd/when
 
-# Target to run all Go tests
 test:
 	$(GOTEST) $(GOFLAGS) $(PKGS)
 
