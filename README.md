@@ -4,14 +4,18 @@ The `when` utility takes input as any popular time format and generates a human-
 ## Installation
 
 ```
-go get github.com/ubhattac/when
+go get github.com/thehiddenlayer/when
 ```
 
 ## Go Usage
 
 ```go
-import "github.com/ubhattac/when"
-readableTime, err := when.When(input)
+import "github.com/thehiddenlayer/when"
+var (
+    readableTime string
+    err error
+)
+readableTime, err = when.When(input)
 ```
 
 Reference `cmd/when/main.go` for more usage in Go.
@@ -21,7 +25,7 @@ Reference `cmd/when/main.go` for more usage in Go.
 Simply, `when [-v] <timestamp>`
 
 ```
-$ go install github.com/ubhattac/when/cmd/when@latest
+$ go install github.com/thehiddenlayer/when/cmd/when@latest
 $ when 2023-09-03T09:10:00Z
 26m
 
@@ -34,7 +38,7 @@ over 7 years ago
 $ when 2023-09-23T14:30:00Z
 09/23/2015
 
-$ when -v -v 1722733189
+$ when -v 1722733189
 in roughly 11 months
 
 $ specificDate = 1795130423

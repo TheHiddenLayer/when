@@ -2,92 +2,95 @@ package description
 
 import (
 	"fmt"
-	"math"
 	"time"
 )
 
-func Describe(t time.Time) string {
-	currentTime := time.Now()
-	duration := currentTime.Sub(t)
+// Describe ingests a time and returns a friendly
+// and human-readable description. If the time is
+// in the future, the description will allude so.
+func Describe(then time.Time) string {
+	now := time.Now()
+	duration := now.Sub(then)
+	durationAbs := duration.Abs()
 
-	absDiffSeconds := int(math.Abs(duration.Seconds()))
-	if absDiffSeconds >= month {
-        var prefix string
-        if duration.Seconds() < 0 {
-            prefix = "on "
-        }
-        if absDiffSeconds <= 3 * month {
-            return prefix + t.Format("Jan 2")
-        }
-        return prefix + t.Format("01/02/2006")
+	if durationAbs >= month {
+		var prefix string
+		if now.Before(then) {
+			prefix = "on "
+		}
+		if durationAbs <= 3*month {
+			return prefix + then.Format("Jan 2")
+		}
+		return prefix + then.Format("01/02/2006")
 	}
-	description := describeAbsDiff(absDiffSeconds)
 
-	inFuture := duration.Seconds() < 0
-	if inFuture {
+	description := describe(durationAbs)
+
+	if now.Before(then) && durationAbs >= 20*time.Second {
 		description = "in " + description
 	}
 	return description
 }
 
-func DescribeVerbosely(t time.Time) string {
-	currentTime := time.Now()
-	duration := currentTime.Sub(t)
+// DescribeVerbosely is similar to Describe, but
+// the final description is more verbose. The
+// time in question is described more naturally.
+func DescribeVerbosely(then time.Time) string {
+	now := time.Now()
+	duration := now.Sub(then)
 
-	absDiffSeconds := int(math.Abs(duration.Seconds()))
-	description := describeAbsDiffVerbosely(absDiffSeconds)
+	description := describeVerbosely(duration.Abs())
 
-	inFuture := duration.Seconds() < 0
-	if inFuture {
+	if now.Before(then) {
 		return "in " + description
 	}
 	return description + " ago"
 }
 
-func describeAbsDiff(secs int) string {
-	switch true {
-	case secs < 20:
+func describe(duration time.Duration) string {
+	switch {
+	case duration < 20*time.Second:
 		return "now"
-	case secs < minute:
-		return fmt.Sprintf("%d%s", secs, "s")
-	case secs < hour:
-		return fmt.Sprintf("%d%s", secs/minute, "m")
-	case secs < day:
-		return fmt.Sprintf("%d%s", secs/hour, "h")
-	case secs < week:
-		return fmt.Sprintf("%d%s", secs/day, "d")
+	case duration < time.Minute:
+		return fmt.Sprintf("%.0fs", duration.Seconds())
+	case duration < time.Hour:
+		return fmt.Sprintf("%.0fm", duration.Minutes())
+	case duration < 24*time.Hour:
+		return fmt.Sprintf("%.0fh", duration.Hours())
+	case duration < 7*24*time.Hour:
+		return fmt.Sprintf("%.0fd", duration.Hours()/24)
 	default:
-		return fmt.Sprintf("%d%s", secs/week, "w")
+		return fmt.Sprintf("%.0fw", duration.Hours()/(24*7))
 	}
 }
 
-func describeAbsDiffVerbosely(secs int) string {
-	switch true {
-	case secs < 10:
+func describeVerbosely(duration time.Duration) string {
+	switch {
+	case duration < 10*time.Second:
 		return "just a few seconds"
-	case secs < minute/2:
+	case duration < 30*time.Second:
 		return "less than 1 minute"
-	case secs < minute+15:
+	case duration < minute+15*time.Second:
 		return "about 1 minute"
-	case secs < hour:
-		return grammaticalNumber(secs/minute, "minute")
-	case secs < day:
-		return grammaticalNumber(secs/hour, "hour")
-	case secs < week:
-		return grammaticalNumber(secs/day, "day")
-	case secs < month:
-		return "around " + grammaticalNumber(secs/week, "week")
-	case secs < year:
-		return "roughly " + grammaticalNumber(secs/month, "month")
+	case duration < time.Hour:
+		return singularOrPlural(duration/minute, "minute")
+	case duration < day:
+		return singularOrPlural(duration/hour, "hour")
+	case duration < week:
+		return "almost " + singularOrPlural(duration/day, "day")
+	case duration < month:
+		return "around " + singularOrPlural(duration/week, "week")
+	case duration < year:
+		return "roughly " + singularOrPlural(duration/month, "month")
 	default:
-		return "over " + grammaticalNumber(secs/year, "year")
+		return "over " + singularOrPlural(duration/year, "year")
 	}
 }
 
-func grammaticalNumber(numTimeUnits int, timeUnitName string) (description string) {
-	description = fmt.Sprintf("%d %s", numTimeUnits, timeUnitName)
-	if numTimeUnits > 1 {
-		description += "s" // plural time unit
+func singularOrPlural(numTimeUnits time.Duration, timeUnitName string) (description string) {
+	description = fmt.Sprintf("%.0f %s", float64(numTimeUnits), timeUnitName)
+	if numTimeUnits > 1 { // plural
+		description += "s"
 	}
 	return
 }
