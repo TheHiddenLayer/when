@@ -1,3 +1,3 @@
-module github.com/ubhattac/when
+module github.com/the-hidden-layer/when
 
 go 1.20
