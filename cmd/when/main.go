@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ubhattac/when"
+	"github.com/the-hidden-layer/when"
 )
 
 func main() {
