@@ -3,23 +3,23 @@ The `when` utility takes input as any popular time format and generates a human-
 
 Think of any microblogging platform:
 
-<img height="500" src="https://raw.githubusercontent.com/the-hidden-layer/assets/master/img/F3441A73-8B02-4184-AD2A-8479FBD0C4DA_1_201_a.jpeg" />
+<img height="500" src="https://raw.githubusercontent.com/TheHiddenLayer/assets/master/img/F3441A73-8B02-4184-AD2A-8479FBD0C4DA_1_201_a.jpeg" />
 
 # Installation
 
 ```bash
-git clone https://github.com/the-hidden-layer/when
+git clone https://github.com/TheHiddenLayer/when
 make install
 ```
 
 ## Go Usage
 
 ```bash
-go get github.com/the-hidden-layer/when
+go get github.com/TheHiddenLayer/when
 ```
 
 ```go
-import "github.com/the-hidden-layer/when"
+import "github.com/TheHiddenLayer/when"
 readableTime, err := when.When(input)
 ```
 
@@ -31,7 +31,7 @@ Reference `cmd/when/main.go` for more usage in Go.
 Simply, `when [-v] <timestamp>`
 
 ```
-$ go install github.com/the-hidden-layer/when/cmd/when@latest
+$ go install github.com/TheHiddenLayer/when/cmd/when@latest
 $ when 2023-09-03T09:10:00Z
 26m
 

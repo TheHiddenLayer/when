@@ -1,3 +1,3 @@
-module github.com/the-hidden-layer/when
+module github.com/TheHiddenLayer/when
 
 go 1.20
